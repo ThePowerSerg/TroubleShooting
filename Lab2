@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+import subprocess
+import os
+from multiprocessing import Pool
+
+def run(directory):
+   src = "data/prod/" + directory + "/"
+   dest = "data/prod_backup/" + directory + "/"
+   subprocess.call(["rsync", "-arq", src, dest ]) 
+
+if __name__ == "__main__":
+    root = "/home/student-03-b35e98500060/data/prod"
+    src = "data/prod/"
+    dest = "data/prod_backup/"
+    directories = []
+    for (root,dirs,files) in os.walk(root):
+        directories = dirs
+        break
+    # Create a pool of specific number of CPUs
+    p = Pool(len(directories))
+    # Start each task within the pool     
+    p.map(run, directories)
