@@ -2,7 +2,7 @@
 from multiprocessing import Pool
 def run(task):
   # Do something with task here
-    print("Handling {}".format(task))
+    print(f"Handling {task}")
 if __name__ == "__main__":
   tasks = ['task1', 'task2', 'task3']
   # Create a pool of specific number of CPUs
